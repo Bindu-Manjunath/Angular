@@ -1,0 +1,68 @@
+<!-- <label>
+  Name:
+  <input type="text" [formControl]="name">
+</label> -->
+<p *ngFor="let alert of alerts">
+  <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+</p>
+<ng-container>
+  <div class="row">
+    <div class="col-6">
+      <form (ngSubmit)="addName()">
+        <div class="form-group">
+          <label for="name">
+            <b>Add Name</b>
+          </label>
+          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+        </div>
+        <!-- <i type="submit" class="material-icons">
+            add_circle
+            </i> -->
+        <button type="submit" class="btn btn-success">Add</button>
+      </form>
+    </div>
+    <div class="col-6">
+      <b>Added People</b>
+      <table class="table" *ngIf="names.length>0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let name of names let i = index">
+            <td>{{i+1}}</td>
+            <td>
+              {{name}}
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="remove(i)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row" *ngIf="names.length>1">
+    <div class="col">
+      <b>Display Lucky Person</b>
+    </div>
+  </div>
+  <div class="row" *ngIf="names.length>1">
+    <div class="col">
+      <button class="btn btn-danger" (click)="getLucky()">Who is Lucky</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="names.length>1  && luckyPerson">
+    <div class="col">
+      {{luckyPerson}}
+    </div>
+  </div>
+  <div class="row" *ngIf="alerts.length>0">
+    <div class="col">
+      <button class="btn btn-info" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</ng-container>
