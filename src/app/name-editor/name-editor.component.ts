@@ -29,11 +29,13 @@ export class NameEditorComponent implements OnInit {
     } else if (this.names.length === 0 && this.model.name !== undefined) {
       this.names.push(this.model.name);
     }
+    this.luckyPerson = undefined;
     this.temporary = this.names;
   }
 
   remove(index: any) {
     this.names = this.names.filter((name) => name !== this.names[index]);
+    this.luckyPerson = undefined;
     this.temporary = this.names;
   }
 
